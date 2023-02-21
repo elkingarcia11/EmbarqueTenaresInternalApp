@@ -1,10 +1,3 @@
-//
-//  EditTransctionView.swift
-//  EmbarqueTenaresInternalApp
-//
-//  Created by Elkin Garcia on 2/21/23.
-//
-
 import SwiftUI
 
 struct EditTransactionView: View {
@@ -18,9 +11,9 @@ struct EditTransactionView: View {
         case receiptField
         case dateField
     }
-    
+     
     private var transactionsViewModel : TransactionTrackerViewModel?
-    
+    private var transactionId : UUID
     @State private var name : String
     @State private var amount : String
     @State private var invoice : String
@@ -34,6 +27,7 @@ struct EditTransactionView: View {
         transactionsViewModel = viewModel
         
         if let transaction = transactions.first {
+            transactionId = transaction.id
             _name = State(initialValue: transaction.name)
             _amount =  State(initialValue: transaction.amount)
             _invoice =  State(initialValue: transaction.invoice)
@@ -43,7 +37,7 @@ struct EditTransactionView: View {
             dateFormatter.dateFormat = "yyyy-MM-dd"
             _date =  State(initialValue: dateFormatter.date(from:transaction.date)!)
         } else {
-            
+            transactionId = UUID()
             _name = State(initialValue: "")
             _amount =  State(initialValue: "")
             _invoice =  State(initialValue: "")
@@ -54,102 +48,107 @@ struct EditTransactionView: View {
     }
     
     var body: some View {
-            NavigationStack{
-                List{
-                    Section(
-                        header: HStack{
-                            Text("Transaction Information")
+        NavigationStack{
+            List{
+                Section(
+                    header: HStack{
+                        Text("Transaction Information")
                             .font(.headline)
-                        .multilineTextAlignment(.center)
-                            
-                        }
+                            .multilineTextAlignment(.center)
+                        
+                    }
                         .frame(maxWidth: .infinity),footer:
-                            HStack{
-                                Button("Cancel"){
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                                    .padding(.trailing)
-                                    .foregroundColor(Color.gray)
-                                Button("Save"){
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                                    .padding(.leading)
-                                    .foregroundColor(Color.blue)
+                        HStack{
+                            Button("Cancel"){
+                                presentationMode.wrappedValue.dismiss()
                             }
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical)
-                    )
-                    {
-                        VStack(alignment: .leading){
-                            Text("Name")
-                                .foregroundColor(Color.gray)
-                            TextField(
-                                "Full name",
-                                text: $name
-                            )
-                            .disableAutocorrection(true)
-                            .focused($focusedField, equals: .nameField)
-                            .onSubmit {
-                                focusedField = .amountField
-                            }
-                            
-                        }
-                        
-                        VStack(alignment: .leading){
-                            Text("Amount paid")
-                                .foregroundColor(Color.gray)
-                            TextField(
-                                "Amount paid",
-                                text: $amount
-                            )
-                            .disableAutocorrection(true)
-                            .focused($focusedField, equals: .amountField)
-                            .foregroundColor(Color.green)
-                            .onSubmit {
-                                focusedField = .invoiceField
-                            }
-                        }
-                        
-                        VStack(alignment: .leading){
-                            Text("Invoice number")
-                                .foregroundColor(Color.gray)
-                            TextField(
-                                "Invoice number",
-                                text: $invoice
-                            )
-                            .disableAutocorrection(true)
-                            .focused($focusedField, equals: .invoiceField)
-                            .onSubmit {
-                                focusedField = .receiptField
-                            }
-                        }
-                        
-                        VStack(alignment: .leading){
-                            Text("Receipt number")
-                                .foregroundColor(Color.gray)
-                            TextField(
-                                "Receipt number",
-                                text: $receipt
-                            )
-                            .disableAutocorrection(true)
-                            .focused($focusedField, equals: .receiptField)
-                            
-                        }
-                        
-                        VStack(alignment: .leading){
-                            Text("Date processed")
-                                .foregroundColor(Color.gray)
-                            DatePicker(
-                                "",
-                                selection: $date,
-                                displayedComponents: [.date]
-                            )
-                            .labelsHidden()
+                            .padding(.trailing)
                             .foregroundColor(Color.gray)
-                        }}
+                            Button("Save"){
+                                editTransaction()
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            .padding(.leading)
+                            .foregroundColor(Color.blue)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical)
+                )
+                {
+                    VStack(alignment: .leading){
+                        Text("Name")
+                            .foregroundColor(Color.gray)
+                        TextField(
+                            "Full name",
+                            text: $name
+                        )
+                        .disableAutocorrection(true)
+                        .focused($focusedField, equals: .nameField)
+                        .onSubmit {
+                            focusedField = .amountField
+                        }
+                    }
+                    VStack(alignment: .leading){
+                        Text("Amount paid")
+                            .foregroundColor(Color.gray)
+                        TextField(
+                            "Amount paid",
+                            text: $amount
+                        )
+                        .disableAutocorrection(true)
+                        .focused($focusedField, equals: .amountField)
+                        .foregroundColor(Color.green)
+                        .onSubmit {
+                            focusedField = .invoiceField
+                        }
+                    }
+                    VStack(alignment: .leading){
+                        Text("Invoice number")
+                            .foregroundColor(Color.gray)
+                        TextField(
+                            "Invoice number",
+                            text: $invoice
+                        )
+                        .disableAutocorrection(true)
+                        .focused($focusedField, equals: .invoiceField)
+                        .onSubmit {
+                            focusedField = .receiptField
+                        }
+                    }
+                    VStack(alignment: .leading){
+                        Text("Receipt number")
+                            .foregroundColor(Color.gray)
+                        TextField(
+                            "Receipt number",
+                            text: $receipt
+                        )
+                        .disableAutocorrection(true)
+                        .focused($focusedField, equals: .receiptField)
+                    }
+                    VStack(alignment: .leading){
+                        Text("Date processed")
+                            .foregroundColor(Color.gray)
+                        DatePicker(
+                            "",
+                            selection: $date,
+                            displayedComponents: [.date]
+                        )
+                        .labelsHidden()
+                        .foregroundColor(Color.gray)
+                    }
                 }
-                .navigationTitle("Edit Transaction")
             }
-           
+            .navigationTitle("Edit Transaction")
+        }
+        
+    }
+    
+    func editTransaction(){
+        let dateFormatter = DateFormatter()
+        dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let newDate = dateFormatter.string(from: date)
+        let transaction = Transaction(name: self.name, amount: self.amount, invoice: self.invoice, receipt: self.receipt, date: newDate)
+        transactionsViewModel?.edit(transaction: transaction, id: transactionId)
     }
 }

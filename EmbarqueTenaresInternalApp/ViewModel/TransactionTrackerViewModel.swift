@@ -40,10 +40,14 @@ class TransactionTrackerViewModel: ObservableObject {
        }
     
     func delete(selection : Set<Transaction>){
-        print("SELECTION TO BE DELETED: ", selection)
+        // send request to database
     }
     
-    func edit(selection : Set<Transaction>){
-        print("SELECTION TO BE EDITED: ", selection)
+    func edit(transaction: Transaction, id: UUID){
+        // send request to database
+    }
+    
+    func addTransaction(transaction : Transaction){
+        // send request to database
     }
 }
