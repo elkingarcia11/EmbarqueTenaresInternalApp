@@ -1,45 +1,32 @@
-//
-//  TransactionTrackerView.swift
-//  EmbarqueTenaresInternalApp
-//
-//  Created by Elkin Garcia on 2/17/23.
-//
-
 import SwiftUI
 
 struct TransactionTracker: View {
+    @Environment(\.editMode) private var editMode
+    
     @StateObject var transactionsViewModel = TransactionTrackerViewModel()
     
-    @State private var completedLongPress = false
-    @State private var singleSelected = false
-    @State private var multipledSelected = false
-    @State private var selectedTransactions : [Transaction] = []
-    
-    
     @State private var isShowingEditSheet = false
+    @State private var isShowingAddSheet = false
     
-    @State var isEditing = false
     @State private var selection = Set<Transaction>()
     
     var body: some View {
-        ZStack{
-            Color(UIColor.lightGray)
-            NavigationView{
+            ZStack{
                 NavigationStack {
                     List(transactionsViewModel.searchResults, id: \.self, selection: $selection){transaction in
                         TransactionRow(transaction: transaction)
                     }
+                    .navigationTitle("Transactions")
                     .toolbar {
                         EditButton()
                     }
-                    .navigationTitle("Transactions")
-                    if(selection.count > 0){
+                    if(selection.count > 0) {
                         Spacer()
                         HStack{
                             Button("Edit", action: {
                                 isShowingEditSheet.toggle()
                             })
-                            .padding(.leading)
+                            .padding(.leading, 20.0)
                             .disabled(!(selection.count == 1))
                             .sheet(isPresented: $isShowingEditSheet,
                                    onDismiss: didDismiss) {
@@ -49,16 +36,49 @@ struct TransactionTracker: View {
                             Button("Delete", action: {
                                 transactionsViewModel.delete(selection: selection)
                             })
-                            .padding(.trailing)
+                            .padding(.trailing, 20.0)
                             .foregroundColor(Color.red)
                             .disabled(!(selection.count > 0))
                         }
                     }
-                    
                 }
-                .searchable(text: $transactionsViewModel.searchText)
-            }}}
-        
+                    
+                    ZStack{
+                        VStack{
+                            Spacer()
+                            HStack{
+                                Spacer()
+                                Button(action:{ isShowingAddSheet.toggle()}
+                                ) {
+                                    Label("Add",systemImage: "doc.badge.plus")
+                                        .font(.system(.largeTitle))
+                                        .frame(width: 77, height: 70)
+                                        .foregroundColor(Color.white)
+                                        .padding(.bottom, 7)
+                                }
+                                .background(Color.blue)
+                                .cornerRadius(38.5)
+                                .padding()
+                                .shadow(color: Color.black.opacity(0.3),
+                                        radius: 3,
+                                        x: 3,
+                                        y: 3)
+                                .labelStyle(.iconOnly)
+                                .sheet(isPresented: $isShowingAddSheet,
+                                       onDismiss: didDismiss) {
+                                    AddTransactionView(viewModel: transactionsViewModel)
+                                }
+                                
+                            }.padding(.bottom).frame(maxWidth: .infinity)
+                        }
+                        .padding(.bottom)
+                        
+                    }
+                
+                    }
+        .searchable(text: $transactionsViewModel.searchText)
+    }
+    
     func delete(at offsets: IndexSet) {
         transactionsViewModel.transactions.remove(atOffsets: offsets)
     }

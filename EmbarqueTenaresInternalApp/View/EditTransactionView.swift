@@ -54,7 +54,6 @@ struct EditTransactionView: View {
     }
     
     var body: some View {
-        NavigationView{
             NavigationStack{
                 List{
                     Section(
@@ -149,9 +148,8 @@ struct EditTransactionView: View {
                             .foregroundColor(Color.gray)
                         }}
                 }
+                .navigationTitle("Edit Transaction")
             }
-            .navigationTitle("Edit Transaction")
-            
-        }
+           
     }
 }

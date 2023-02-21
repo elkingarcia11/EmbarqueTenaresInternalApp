@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E9AE9AF29A57B22005D8887 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E9AE9AE29A57B22005D8887 /* AddTransactionView.swift */; };
 		1EEE22AC29A03298002ED389 /* EmbarqueTenaresInternalAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22AB29A03298002ED389 /* EmbarqueTenaresInternalAppApp.swift */; };
 		1EEE22AE29A03298002ED389 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22AD29A03298002ED389 /* ContentView.swift */; };
 		1EEE22B029A03299002ED389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE22AF29A03299002ED389 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1E9AE9AE29A57B22005D8887 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
 		1EEE22A829A03298002ED389 /* EmbarqueTenaresInternalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmbarqueTenaresInternalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEE22AB29A03298002ED389 /* EmbarqueTenaresInternalAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbarqueTenaresInternalAppApp.swift; sourceTree = "<group>"; };
 		1EEE22AD29A03298002ED389 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				1EEE22BB29A03331002ED389 /* BoxesTracker.swift */,
 				1EEE22CD29A03AE1002ED389 /* TransactionRow.swift */,
 				1EEE22D229A4FF40002ED389 /* EditTransactionView.swift */,
+				1E9AE9AE29A57B22005D8887 /* AddTransactionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EEE22C829A037EE002ED389 /* Transaction.swift in Sources */,
+				1E9AE9AF29A57B22005D8887 /* AddTransactionView.swift in Sources */,
 				1EEE22C229A03366002ED389 /* OtherTracker.swift in Sources */,
 				1EEE22AE29A03298002ED389 /* ContentView.swift in Sources */,
 				1EEE22D329A4FF40002ED389 /* EditTransactionView.swift in Sources */,

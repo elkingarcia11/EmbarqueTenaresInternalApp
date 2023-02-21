@@ -34,7 +34,7 @@ struct TransactionRow: View {
                     .foregroundColor(Color.green)
             }
             HStack{
-                Text(transaction.invoice+": "+transaction.receipt)
+                Text(transaction.invoice)
                     .font(.callout)
                     .foregroundColor(Color.gray)
                 Spacer()
