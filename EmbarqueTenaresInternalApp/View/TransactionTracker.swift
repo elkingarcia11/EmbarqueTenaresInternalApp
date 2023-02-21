@@ -16,10 +16,11 @@ struct TransactionTracker: View {
     @State private var selectedTransactions : [Transaction] = []
     
     
+    @State private var isShowingEditSheet = false
     
     @State var isEditing = false
     @State private var selection = Set<Transaction>()
-
+    
     var body: some View {
         ZStack{
             Color(UIColor.lightGray)
@@ -36,29 +37,34 @@ struct TransactionTracker: View {
                         Spacer()
                         HStack{
                             Button("Edit", action: {
-                                transactionsViewModel.edit(selection: selection)
+                                isShowingEditSheet.toggle()
                             })
-                                .padding(.leading)
-                                .disabled(!(selection.count == 1))
+                            .padding(.leading)
+                            .disabled(!(selection.count == 1))
+                            .sheet(isPresented: $isShowingEditSheet,
+                                   onDismiss: didDismiss) {
+                                EditTransactionView( transactions: selection, viewModel: transactionsViewModel)
+                            }
                             Spacer()
                             Button("Delete", action: {
                                 transactionsViewModel.delete(selection: selection)
                             })
-                                .padding(.trailing)
-                                .foregroundColor(Color.red)
-                                .disabled(!(selection.count > 0))
+                            .padding(.trailing)
+                            .foregroundColor(Color.red)
+                            .disabled(!(selection.count > 0))
                         }
-                        
                     }
                     
                 }
                 .searchable(text: $transactionsViewModel.searchText)
-            }
-            
-        }
-    }
-    
+            }}}
+        
     func delete(at offsets: IndexSet) {
         transactionsViewModel.transactions.remove(atOffsets: offsets)
     }
+    
+    func didDismiss() {
+        // Handle the dismissing action.
+    }
+    
 }
