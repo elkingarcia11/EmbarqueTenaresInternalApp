@@ -20,6 +20,9 @@
 		1EEE22CE29A03AE1002ED389 /* TransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22CD29A03AE1002ED389 /* TransactionRow.swift */; };
 		1EEE22D129A134F0002ED389 /* TransactionTrackerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22D029A134F0002ED389 /* TransactionTrackerViewModel.swift */; };
 		1EEE22D329A4FF40002ED389 /* EditTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22D229A4FF40002ED389 /* EditTransactionView.swift */; };
+		1EEE22D629A669C5002ED389 /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22D529A669C5002ED389 /* WebService.swift */; };
+		1EEE22D829A66E1F002ED389 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22D729A66E1F002ED389 /* LoginViewModel.swift */; };
+		1EEE22DA29A66EA1002ED389 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22D929A66EA1002ED389 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,10 @@
 		1EEE22CD29A03AE1002ED389 /* TransactionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRow.swift; sourceTree = "<group>"; };
 		1EEE22D029A134F0002ED389 /* TransactionTrackerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTrackerViewModel.swift; sourceTree = "<group>"; };
 		1EEE22D229A4FF40002ED389 /* EditTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionView.swift; sourceTree = "<group>"; };
+		1EEE22D529A669C5002ED389 /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
+		1EEE22D729A66E1F002ED389 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		1EEE22D929A66EA1002ED389 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		1EEE22DB29A67B4F002ED389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,9 +76,11 @@
 		1EEE22AA29A03298002ED389 /* EmbarqueTenaresInternalApp */ = {
 			isa = PBXGroup;
 			children = (
-				1EEE22CF29A134C5002ED389 /* ViewModel */,
-				1EEE22C429A03795002ED389 /* Model */,
-				1EEE22C329A03791002ED389 /* View */,
+				1EEE22DB29A67B4F002ED389 /* Info.plist */,
+				1EEE22D429A669A7002ED389 /* Services */,
+				1EEE22CF29A134C5002ED389 /* ViewModels */,
+				1EEE22C429A03795002ED389 /* Models */,
+				1EEE22C329A03791002ED389 /* Views */,
 				1EEE22AB29A03298002ED389 /* EmbarqueTenaresInternalAppApp.swift */,
 				1EEE22AF29A03299002ED389 /* Assets.xcassets */,
 				1EEE22B129A03299002ED389 /* Preview Content */,
@@ -87,7 +96,7 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		1EEE22C329A03791002ED389 /* View */ = {
+		1EEE22C329A03791002ED389 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				1EEE22AD29A03298002ED389 /* ContentView.swift */,
@@ -98,24 +107,34 @@
 				1EEE22CD29A03AE1002ED389 /* TransactionRow.swift */,
 				1EEE22D229A4FF40002ED389 /* EditTransactionView.swift */,
 				1E9AE9AE29A57B22005D8887 /* AddTransactionView.swift */,
+				1EEE22D929A66EA1002ED389 /* LoginView.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		1EEE22C429A03795002ED389 /* Model */ = {
+		1EEE22C429A03795002ED389 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1EEE22C729A037EE002ED389 /* Transaction.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		1EEE22CF29A134C5002ED389 /* ViewModel */ = {
+		1EEE22CF29A134C5002ED389 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				1EEE22D029A134F0002ED389 /* TransactionTrackerViewModel.swift */,
+				1EEE22D729A66E1F002ED389 /* LoginViewModel.swift */,
 			);
-			path = ViewModel;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1EEE22D429A669A7002ED389 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1EEE22D529A669C5002ED389 /* WebService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +213,10 @@
 				1EEE22AE29A03298002ED389 /* ContentView.swift in Sources */,
 				1EEE22D329A4FF40002ED389 /* EditTransactionView.swift in Sources */,
 				1EEE22BE29A0333B002ED389 /* BarrelsTracker.swift in Sources */,
+				1EEE22D629A669C5002ED389 /* WebService.swift in Sources */,
 				1EEE22D129A134F0002ED389 /* TransactionTrackerViewModel.swift in Sources */,
+				1EEE22DA29A66EA1002ED389 /* LoginView.swift in Sources */,
+				1EEE22D829A66E1F002ED389 /* LoginViewModel.swift in Sources */,
 				1EEE22BC29A03331002ED389 /* BoxesTracker.swift in Sources */,
 				1EEE22CE29A03AE1002ED389 /* TransactionRow.swift in Sources */,
 				1EEE22AC29A03298002ED389 /* EmbarqueTenaresInternalAppApp.swift in Sources */,
@@ -330,6 +352,7 @@
 				DEVELOPMENT_TEAM = 49AKYU26GJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EmbarqueTenaresInternalApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -359,6 +382,7 @@
 				DEVELOPMENT_TEAM = 49AKYU26GJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = EmbarqueTenaresInternalApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
