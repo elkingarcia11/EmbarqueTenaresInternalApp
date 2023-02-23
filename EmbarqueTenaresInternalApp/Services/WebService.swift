@@ -24,6 +24,8 @@ struct LoginResponse : Codable {
 
 class WebService {
     
+    
+    
     func login(username: String, password: String, completion: @escaping (Result<String,AuthenticationError>) -> Void){
         
         guard let url = URL(string: "http://server.embarquetenares.com:8000/api/tracker/login") else {
@@ -59,4 +61,12 @@ class WebService {
         }.resume()
         
     }
+    
+    func getAllTransactions(token : String, completion: @escaping (Result<String,AuthenticationError>) -> Void){
+        guard let url = URL(string: "http://server.embarquetenares.com:8000/api/tracker/login") else {
+            completion(.failure(.custom(errorMessage: "URL is not correct")))
+            return
+        }
+    }
+    
 }

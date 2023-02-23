@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
-    @Binding private var loginViewModel : LoginViewModel
+    var loginViewModel : LoginViewModel
     @State private var username : String = ""
     @State private var password : String = ""
     @State private var isShowingPassword : Bool = false

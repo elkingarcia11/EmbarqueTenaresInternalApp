@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var loginViewModel = LoginViewModel()
+    @StateObject var loginViewModel = LoginViewModel()
     var body: some View {
         if(loginViewModel.isAuthenticated){
             TransactionTrackerView()
