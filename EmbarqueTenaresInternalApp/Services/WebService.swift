@@ -12,6 +12,12 @@ enum AuthenticationError : Error {
     case custom(errorMessage: String)
 }
 
+enum NetworkError : Error {
+    case invalidUrl
+    case noData
+    case decodingError
+}
+
 struct LoginRequestBody : Codable {
     let username: String
     let password: String
@@ -23,8 +29,6 @@ struct LoginResponse : Codable {
 }
 
 class WebService {
-    
-    
     
     func login(username: String, password: String, completion: @escaping (Result<String,AuthenticationError>) -> Void){
         
@@ -62,11 +66,29 @@ class WebService {
         
     }
     
-    func getAllTransactions(token : String, completion: @escaping (Result<String,AuthenticationError>) -> Void){
-        guard let url = URL(string: "http://server.embarquetenares.com:8000/api/tracker/login") else {
-            completion(.failure(.custom(errorMessage: "URL is not correct")))
+    func getAllTransactions(token : String, completion: @escaping (Result<[Transaction],NetworkError>) -> Void){
+        guard let url = URL(string: "http://server.embarquetenares.com:8000/api/tracker/transactions") else {
+            completion(.failure(.invalidUrl))
             return
         }
+        
+        var request = URLRequest(url: url)
+        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request){
+            (data, response, error) in
+            guard let data = data, error == nil else {
+                completion(.failure(.noData))
+                return
+            }
+            
+            guard let transactions = try? JSONDecoder().decode([Transaction].self, from: data) else {
+                completion(.failure(.decodingError))
+                return
+            }
+            
+            completion(.success(transactions))
+        }.resume()
     }
     
 }

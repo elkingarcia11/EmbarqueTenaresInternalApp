@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Transaction : Hashable, Identifiable {
+struct Transaction : Hashable, Identifiable, Decodable {
     var id = UUID()
     var name : String
     var amount : String

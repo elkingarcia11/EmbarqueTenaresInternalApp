@@ -8,11 +8,11 @@
 import Foundation
 class TransactionTrackerViewModel: ObservableObject {
     @Published var transactions : [Transaction]
-    @Published var searchText : String
+    @Published var searchText : String = ""
     
     init(){
-        self.searchText = ""
-        self.transactions = [Transaction]()
+        self.transactions = WebService().getAllTransactions(token: <#T##String#>, completion: <#T##(Result<[Transaction], NetworkError>) -> Void#>)
+        
         /*for list of transactions, make a list for names, amount, receipt, and date for search functionality*/
         let transactionOne = Transaction( name: "elkin garcia", amount: "125", invoice: "6542354", receipt: "5648", date: "2023-01-25")
         let transactionTwo = Transaction( name: "elkin rodriguez", amount: "300", invoice: "6542354", receipt: "4762", date: "2023-02-15")
