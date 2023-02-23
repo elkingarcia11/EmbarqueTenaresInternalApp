@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var loginViewModel = LoginViewModel()
     var body: some View {
-        LoginView()
+        if(loginViewModel.isAuthenticated){
+            TransactionTrackerView()
+        } else {
+            LoginView(loginViewModel: loginViewModel)
+        }
     }
 }
 

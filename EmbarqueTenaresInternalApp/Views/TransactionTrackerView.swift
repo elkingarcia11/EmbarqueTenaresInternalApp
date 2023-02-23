@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TransactionTracker: View {
+struct TransactionTrackerView: View {
     @Environment(\.editMode) private var editMode
     
     @StateObject var transactionsViewModel = TransactionTrackerViewModel()

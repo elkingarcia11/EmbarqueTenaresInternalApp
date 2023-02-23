@@ -14,7 +14,7 @@
 		1EEE22B329A03299002ED389 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EEE22B229A03299002ED389 /* Preview Assets.xcassets */; };
 		1EEE22BC29A03331002ED389 /* BoxesTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22BB29A03331002ED389 /* BoxesTracker.swift */; };
 		1EEE22BE29A0333B002ED389 /* BarrelsTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22BD29A0333B002ED389 /* BarrelsTracker.swift */; };
-		1EEE22C029A0334F002ED389 /* TransactionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22BF29A0334F002ED389 /* TransactionTracker.swift */; };
+		1EEE22C029A0334F002ED389 /* TransactionTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22BF29A0334F002ED389 /* TransactionTrackerView.swift */; };
 		1EEE22C229A03366002ED389 /* OtherTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22C129A03366002ED389 /* OtherTracker.swift */; };
 		1EEE22C829A037EE002ED389 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22C729A037EE002ED389 /* Transaction.swift */; };
 		1EEE22CE29A03AE1002ED389 /* TransactionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE22CD29A03AE1002ED389 /* TransactionRow.swift */; };
@@ -34,7 +34,7 @@
 		1EEE22B229A03299002ED389 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1EEE22BB29A03331002ED389 /* BoxesTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxesTracker.swift; sourceTree = "<group>"; };
 		1EEE22BD29A0333B002ED389 /* BarrelsTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarrelsTracker.swift; sourceTree = "<group>"; };
-		1EEE22BF29A0334F002ED389 /* TransactionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTracker.swift; sourceTree = "<group>"; };
+		1EEE22BF29A0334F002ED389 /* TransactionTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTrackerView.swift; sourceTree = "<group>"; };
 		1EEE22C129A03366002ED389 /* OtherTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherTracker.swift; sourceTree = "<group>"; };
 		1EEE22C729A037EE002ED389 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		1EEE22CD29A03AE1002ED389 /* TransactionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionRow.swift; sourceTree = "<group>"; };
@@ -100,7 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				1EEE22AD29A03298002ED389 /* ContentView.swift */,
-				1EEE22BF29A0334F002ED389 /* TransactionTracker.swift */,
+				1EEE22BF29A0334F002ED389 /* TransactionTrackerView.swift */,
 				1EEE22BD29A0333B002ED389 /* BarrelsTracker.swift */,
 				1EEE22C129A03366002ED389 /* OtherTracker.swift */,
 				1EEE22BB29A03331002ED389 /* BoxesTracker.swift */,
@@ -220,7 +220,7 @@
 				1EEE22BC29A03331002ED389 /* BoxesTracker.swift in Sources */,
 				1EEE22CE29A03AE1002ED389 /* TransactionRow.swift in Sources */,
 				1EEE22AC29A03298002ED389 /* EmbarqueTenaresInternalAppApp.swift in Sources */,
-				1EEE22C029A0334F002ED389 /* TransactionTracker.swift in Sources */,
+				1EEE22C029A0334F002ED389 /* TransactionTrackerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

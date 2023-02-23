@@ -18,8 +18,8 @@ struct LoginRequestBody : Codable {
 }
 
 struct LoginResponse : Codable {
-    let accessToken : String?
-    let tokenType : String?
+    let access_token : String?
+    let token_type : String?
 }
 
 class WebService {
@@ -31,31 +31,31 @@ class WebService {
             return
         }
         
-        let body = LoginRequestBody(username: username, password: password)
+        let body = "username=\(username)&password=\(password)".data(using: .utf8)
         
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONEncoder().encode(body)
         
-        URLSession.shared.dataTask(with: request){
-            (data, response, error) in
+        request.httpMethod = "POST"
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpBody = body
+        
+        URLSession.shared.dataTask(with: request){ (data, response, error) in
             guard let data = data, error == nil else {
                 completion(.failure(.custom(errorMessage: "No data")))
                 return
             }
             
             guard let loginResponse = try? JSONDecoder().decode(LoginResponse.self, from: data) else {
-                    completion(.failure(.custom(errorMessage: "Invalid credentials")))
-                    return
-            }
-            
-            guard let token = loginResponse.accessToken else {
-                completion(.failure(.custom(errorMessage: "Invalid credentials")))
+                completion(.failure(.invalidCredentials))
                 return
             }
-            completion(.success(token))
             
+            guard let token = loginResponse.access_token else {
+                completion(.failure(.invalidCredentials))
+                return
+            }
+            
+            completion(.success(token))
         }.resume()
         
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LoginView: View {
+    @Binding private var loginViewModel : LoginViewModel
     @State private var username : String = ""
     @State private var password : String = ""
     @State private var isShowingPassword : Bool = false
@@ -95,13 +96,6 @@ struct LoginView: View {
     }
     
     func login(){
-        LoginViewModel().login(username: username, password: password)
-    }
-}
-
-struct LoginView_Previews: PreviewProvider {
-    @State static var username = ""
-    static var previews: some View {
-        LoginView()
+        loginViewModel.login(username: username, password: password)
     }
 }

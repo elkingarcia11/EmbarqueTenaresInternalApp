@@ -8,12 +8,19 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
+    @Published var isAuthenticated : Bool = false
+    
     func login(username : String , password : String) {
-        WebService().login(username: username, password: password) {
+        
+        let defaults = UserDefaults.standard
+        WebService().login(username: username.lowercased(), password: password) {
             result in
             switch result {
             case .success (let token):
-                print(token)
+                defaults.setValue(token, forKey:"jsonwebtoken")
+                DispatchQueue.main.async {
+                    self.isAuthenticated = true
+                }
             case .failure(let error):
                 print(error.localizedDescription)
             }
