@@ -26,4 +26,10 @@ class LoginViewModel: ObservableObject {
             }
         }
     }
+    
+    func logout(){
+        let defaults = UserDefaults.standard
+        defaults.setValue("", forKey:"jsonwebtoken")
+        self.isAuthenticated = false
+    }
 }

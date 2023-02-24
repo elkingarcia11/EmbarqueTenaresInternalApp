@@ -99,7 +99,8 @@ struct AddTransactionView: View {
         dateFormatter.string(from: date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let newDate = dateFormatter.string(from: date)
-        let transaction = Transaction(name: self.name, amount: self.amount, invoice: self.invoice, receipt: self.receipt, date: newDate)
+        let today = dateFormatter.string(from: Date.now)
+        let transaction = Transaction(id: UUID().uuidString, name: self.name, invoice: Int(self.invoice)!, receipt: Int(self.receipt)!, amount: Int(self.amount)!, dateProcessed: newDate, date: today)
         transactionsViewModel?.addTransaction(transaction: transaction)
     }
 }

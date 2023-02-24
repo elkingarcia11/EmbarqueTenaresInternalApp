@@ -7,12 +7,17 @@
 
 import Foundation
 
-struct Transaction : Hashable, Identifiable, Decodable {
-    var id = UUID()
-    var name : String
-    var amount : String
-    var invoice : String
-    var receipt: String
-    var date : String
-    
+struct Transaction: Codable, Hashable{
+    let id, name: String
+    let invoice, receipt, amount: Int
+    let dateProcessed, date: String
+
+    enum CodingKeys: String, CodingKey {
+        case id = "_id"
+        case name, invoice, receipt, amount, dateProcessed, date
+    }
+}
+
+struct TransactionResponse : Codable {
+    let data : [Transaction]
 }

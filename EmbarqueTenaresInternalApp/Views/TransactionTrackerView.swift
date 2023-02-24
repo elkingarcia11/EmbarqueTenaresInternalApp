@@ -3,6 +3,7 @@ import SwiftUI
 struct TransactionTrackerView: View {
     @Environment(\.editMode) private var editMode
     
+    var loginViewModel : LoginViewModel
     @StateObject var transactionsViewModel = TransactionTrackerViewModel()
     
     @State private var isShowingEditSheet = false
@@ -18,7 +19,9 @@ struct TransactionTrackerView: View {
                 }
                 .navigationTitle("Transactions")
                 .toolbar {
-                    EditButton()
+                    Button("Logout"){
+                        loginViewModel.logout()
+                    }
                 }
                 if(selection.count > 0) {
                     Spacer()

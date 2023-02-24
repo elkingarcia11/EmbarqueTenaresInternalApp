@@ -73,7 +73,8 @@ class WebService {
         }
         
         var request = URLRequest(url: url)
-        request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request){
             (data, response, error) in
@@ -82,12 +83,12 @@ class WebService {
                 return
             }
             
-            guard let transactions = try? JSONDecoder().decode([Transaction].self, from: data) else {
+            guard let transactions = try? JSONDecoder().decode(TransactionResponse.self, from: data) else {
                 completion(.failure(.decodingError))
                 return
             }
             
-            completion(.success(transactions))
+            completion(.success(transactions.data))
         }.resume()
     }
     

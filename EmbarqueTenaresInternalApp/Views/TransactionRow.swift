@@ -29,12 +29,12 @@ struct TransactionRow: View {
                 Text(transaction.name.uppercased())
                     .font(.title2)
                 Spacer()
-                Text("$"+transaction.amount)
+                Text("$\(transaction.amount)")
                     .font(.title2)
                     .foregroundColor(Color.green)
             }
             HStack{
-                Text(transaction.invoice)
+                Text(String(transaction.invoice))
                     .font(.callout)
                     .foregroundColor(Color.gray)
                 Spacer()

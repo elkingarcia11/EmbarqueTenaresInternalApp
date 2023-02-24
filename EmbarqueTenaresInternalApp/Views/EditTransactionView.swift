@@ -13,7 +13,7 @@ struct EditTransactionView: View {
     }
      
     private var transactionsViewModel : TransactionTrackerViewModel?
-    private var transactionId : UUID
+    private let transactionId : String
     @State private var name : String
     @State private var amount : String
     @State private var invoice : String
@@ -29,15 +29,15 @@ struct EditTransactionView: View {
         if let transaction = transactions.first {
             transactionId = transaction.id
             _name = State(initialValue: transaction.name)
-            _amount =  State(initialValue: transaction.amount)
-            _invoice =  State(initialValue: transaction.invoice)
-            _receipt =  State(initialValue: transaction.receipt)
+            _amount =  State(initialValue: String(transaction.amount))
+            _invoice =  State(initialValue: String(transaction.invoice))
+            _receipt =  State(initialValue: String(transaction.receipt))
             let dateFormatter = DateFormatter()
             dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
             dateFormatter.dateFormat = "yyyy-MM-dd"
             _date =  State(initialValue: dateFormatter.date(from:transaction.date)!)
         } else {
-            transactionId = UUID()
+            transactionId = ""
             _name = State(initialValue: "")
             _amount =  State(initialValue: "")
             _invoice =  State(initialValue: "")
@@ -148,7 +148,8 @@ struct EditTransactionView: View {
         dateFormatter.string(from: date)
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let newDate = dateFormatter.string(from: date)
-        let transaction = Transaction(name: self.name, amount: self.amount, invoice: self.invoice, receipt: self.receipt, date: newDate)
-        transactionsViewModel?.edit(transaction: transaction, id: transactionId)
+        let today = dateFormatter.string(from: Date.now)
+        let transaction = Transaction(id: self.transactionId, name: self.name, invoice: Int(self.invoice)!, receipt: Int(self.receipt)!, amount: Int(self.amount)!, dateProcessed: newDate, date: today)
+        transactionsViewModel?.edit(transaction: transaction)
     }
 }

@@ -11,7 +11,7 @@ struct ContentView: View {
     @StateObject var loginViewModel = LoginViewModel()
     var body: some View {
         if(loginViewModel.isAuthenticated){
-            TransactionTrackerView()
+            TransactionTrackerView(loginViewModel: loginViewModel)
         } else {
             LoginView(loginViewModel: loginViewModel)
         }
